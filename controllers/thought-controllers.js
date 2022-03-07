@@ -13,7 +13,7 @@ const thoughtControllers = {
         res.status(400).json(err);
       });
   },
-  // get single thought by id
+
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((dbThoughtData) => {
@@ -27,7 +27,9 @@ const thoughtControllers = {
         res.status(500).json(err);
       });
   },
-  // create a thought
+
+
+  //Create the thought.
   createThought(req, res) {
     Thought.create(req.body)
       .then((dbThoughtData) => {
@@ -49,7 +51,7 @@ const thoughtControllers = {
         res.status(500).json(err);
       });
   },
-  // update thought
+  // update the thoughts
   updateThought(req, res) {
     Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { runValidators: true, new: true })
       .then((dbThoughtData) => {
@@ -63,14 +65,14 @@ const thoughtControllers = {
         res.status(500).json(err);
       });
   },
-  // delete thought
+  // bonus: delete the thought
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
           return res.status(404).json({ message: 'No thought with this id!' });
         }
-
+        //make it in order to remove a thought once a new one is put in.
         // remove thought id from user's `thoughts` field
         return User.findOneAndUpdate(
           { thoughts: req.params.thoughtId },
@@ -90,7 +92,7 @@ const thoughtControllers = {
       });
   },
 
-  // add a reaction to a thought
+  // Reaction code below (if possible)
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -108,6 +110,7 @@ const thoughtControllers = {
         res.status(500).json(err);
       });
   },
+  //**get help
   // remove reaction from a thought
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
