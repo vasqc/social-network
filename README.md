@@ -6,11 +6,11 @@ This week, I was not given any starter code and was tasked with creating a socia
 
 
 
-Walkthrough Videos
+Walkthrough Video
 
-Part 1: 
-Part 2: 
-Part 3: 
+Link to Video:
+https://drive.google.com/file/d/1T3E0YgVdYpVSf6q7Gb41i07MfNHr1v1N/view
+
 
 Installation
 
