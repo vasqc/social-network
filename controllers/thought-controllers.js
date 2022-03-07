@@ -1,8 +1,8 @@
 const { Thought, User } = require('../models');
 
-const thoughtController = {
+const thoughtControllers = {
   // get all thoughts
-  getThoughts(req, res) {
+  getThought(req, res) {
     Thought.find()
       .sort({ createdAt: -1 })
       .then((dbThoughtData) => {
@@ -10,7 +10,7 @@ const thoughtController = {
       })
       .catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
   },
   // get single thought by id
@@ -128,4 +128,4 @@ const thoughtController = {
   },
 };
 
-module.exports = thoughtController;
+module.exports = thoughtControllers;

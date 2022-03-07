@@ -1,9 +1,8 @@
-const { User, Thought } = require('../models');
+const { user, thought } = require('../models');
 
 const userController = {
-  // get all users
   getUsers(req, res) {
-    User.find()
+    user.find()
       .select('-__v')
       .then((dbUserData) => {
         res.json(dbUserData);
@@ -15,7 +14,7 @@ const userController = {
   },
   // get single user by id
   getSingleUser(req, res) {
-    User.findOne({ _id: req.params.userId })
+    user.findOne({ _id: req.params.userId })
       .select('-__v')
       .populate('friends')
       .populate('thoughts')
@@ -30,9 +29,9 @@ const userController = {
         res.status(500).json(err);
       });
   },
-  // create a new user
+  // I have to make a new user.   use lower case "u"
   createUser(req, res) {
-    User.create(req.body)
+    user.create(req.body)
       .then((dbUserData) => {
         res.json(dbUserData);
       })
@@ -41,7 +40,7 @@ const userController = {
         res.status(500).json(err);
       });
   },
-  // update a user
+  
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
