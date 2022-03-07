@@ -1,4 +1,4 @@
-const { user, thought } = require('../models');
+const { User, Thought } = require('../models');
 
 const userController = {
   getUsers(req, res) {
@@ -26,18 +26,20 @@ const userController = {
       })
       .catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
   },
-  // I have to make a new user.   use lower case "u"
-  createUser(req, res) {
-    user.create(req.body)
+  // 
+  createUser({body}, res) {
+    console.log ('adding a user');
+    User.create(body)
       .then((dbUserData) => {
+        console.log (dbUserData);
         res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
   },
   
